@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet-mssql
 {
-	"name": "C# (.NET) and MS SQL",
+	"name": "Azure AI + MCP Todo Agent (.NET & Python)",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -31,22 +31,32 @@
 			
 			"extensions": [
 				// To use the SQL Server (mssql) extension, uncomment the connection settings above too
-				// "ms-mssql.mssql", 
-				"GitHub.copilot"
+				// "ms-mssql.mssql",
+				"GitHub.copilot",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-vscode.azure-account",
+				"ms-azuretools.azure-dev",
+				"ms-dotnettools.csdevkit"
 			]
 		}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5000, 5001],
-	// "portsAttributes": {
-	//		"5001": {
-	//			"protocol": "https"
-	//		}
-	// }
+	"forwardPorts": [5093, 7085],
+	"portsAttributes": {
+		"5093": {
+			"label": "ASP.NET Core (HTTP)",
+			"protocol": "http"
+		},
+		"7085": {
+			"label": "ASP.NET Core (HTTPS)",
+			"protocol": "https"
+		}
+	},
 
 	// postCreateCommand.sh parameters: $1=SA password, $2=dacpac path, $3=sql script(s) path
-	"postCreateCommand": "bash .devcontainer/mssql/postCreateCommand.sh 'P@ssw0rd' './bin/Debug/' './.devcontainer/mssql/'"
+	"postCreateCommand": "bash .devcontainer/mssql/postCreateCommand.sh 'P@ssw0rd' './bin/Debug/' './.devcontainer/mssql/' && bash .devcontainer/setup-python-env.sh"
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"

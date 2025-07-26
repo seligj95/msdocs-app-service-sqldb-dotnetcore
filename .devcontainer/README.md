@@ -4,8 +4,45 @@ This `.devcontainer` directory contains the configuration for a [dev container](
 
 The dev container configuration lets you open the repository in a [GitHub codespace](https://docs.github.com/codespaces/overview) or a dev container in Visual Studio Code. For your convenience, the dev container is configured with the following:
 
-- .NET 8
-- SQL Server
-- [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview) (so you can run `azd` commands directly).
-- GitHub Copilot
-- SQL Server extension (uncomment code in [devcontainer.json](devcontainer.json)).
+## 🛠️ Pre-installed Tools
+
+- **.NET 8**: ASP.NET Core application development
+- **SQL Server**: Database for the todo application
+- **Python 3.11+**: For Azure AI + MCP integration
+- **Azure CLI**: Command-line tool for Azure resource management
+- **[Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview)**: So you can run `azd` commands directly
+
+## 🎯 VS Code Extensions
+
+- **GitHub Copilot**: AI-powered code completion
+- **Python Extension Pack**: Python development support
+- **Azure Extensions**: Azure account and Azure Developer CLI integration
+- **C# Dev Kit**: Enhanced .NET development
+- **SQL Server extension**: (uncomment code in [devcontainer.json](devcontainer.json))
+
+## 🚀 Auto-Setup Features
+
+The dev container automatically:
+
+1. **Sets up SQL Server** with the todo database
+2. **Creates Python virtual environment** in `azure-foundry-mcp/venv`
+3. **Installs Python dependencies** for Azure AI integration
+4. **Configures port forwarding** for local development (5093 HTTP, 7085 HTTPS)
+
+## 🔧 Getting Started
+
+After the container builds, you can immediately:
+
+```bash
+# Run the .NET application
+dotnet run
+
+# Set up Azure AI integration
+cd azure-foundry-mcp
+source venv/bin/activate
+cp .env.template .env
+# Edit .env with your Azure details
+python connect_mcp_openai.py
+```
+
+See the main [README.md](../README.md) for complete setup instructions.
