@@ -131,7 +131,7 @@
         
         const messageContent = `
             <div class="d-inline-block p-3 rounded-3 shadow-sm ${sender === 'user' ? 'bg-primary text-white' : 'bg-white border'}">
-                <div class="small text-muted mb-1">
+                <div class="small mb-1 ${sender === 'user' ? 'text-white-50' : 'text-muted'}">
                     <i class="fas fa-${sender === 'user' ? 'user' : 'robot'} me-1"></i>
                     ${sender === 'user' ? 'You' : 'AI Assistant'}
                 </div>

@@ -40,6 +40,7 @@ This application now includes a built-in AI chat interface that lets you manage 
 
 ### Configuration for AI Chat
 
+#### Local Development
 Update your `appsettings.json` with your Azure OpenAI details:
 
 ```json
@@ -50,11 +51,32 @@ Update your `appsettings.json` with your Azure OpenAI details:
 }
 ```
 
+#### Azure App Service Deployment
+When deploying to Azure App Service, you need to configure managed identity and app settings:
+
+1. **Enable System Assigned Managed Identity**:
+   - Go to your App Service → Identity → System assigned
+   - Toggle Status to "On" and Save
+
+2. **Grant Azure OpenAI Access**:
+   - Navigate to your Azure OpenAI resource → Access control (IAM)
+   - Add role assignment: "Cognitive Services User"
+   - Assign to your App Service's managed identity
+
+3. **Configure App Settings** in your App Service:
+   ```
+   AZURE_OPENAI_ENDPOINT = https://your-openai-resource.openai.azure.com/
+   AZURE_OPENAI_DEPLOYMENT_NAME = gpt-4o-mini
+   LOCAL_MCP_URL = https://your-app-service-name.azurewebsites.net/api/mcp
+   ```
+
+The managed identity allows secure authentication to Azure OpenAI without storing API keys.
+
 ## Run the sample
 
 This project has a [dev container configuration](.devcontainer/), which makes it easier to develop apps locally, deploy them to Azure, and monitor them. The easiest way to run this sample application is inside a GitHub codespace. Follow these steps:
 
-1. Fork this repository to your account. For instructions, see [Fork a repo](https://docs.github.com/get-started/quickstart/fork-a-repo).
+1. Fork this repository to your account.
 
 1. From the repository root of your fork, select **Code** > **Codespaces** > **+**.
 
