@@ -358,12 +358,5 @@ MigrationBackup/
 # OSX
 .DS_Store
 
-# Python MCP Integration
-azure-foundry-mcp/.env
-azure-foundry-mcp/__pycache__/
-azure-foundry-mcp/venv/
-azure-foundry-mcp/*.pyc
-azure-foundry-mcp/*.log
-
 # Migration bundle (regenerated during deployment)
 migrationsbundle

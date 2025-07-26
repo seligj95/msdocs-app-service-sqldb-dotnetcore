@@ -2,6 +2,9 @@
 using DotNetCoreSqlDb.Data;
 var builder = WebApplication.CreateBuilder(args);
 
+// Add HttpClient for API calls
+builder.Services.AddHttpClient();
+
 // Add database context and cache
 if(builder.Environment.IsDevelopment())
 {

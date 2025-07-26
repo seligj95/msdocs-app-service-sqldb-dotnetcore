@@ -20,6 +20,36 @@ description: "A sample application you can use to follow along with Tutorial: De
 This is an ASP.NET Core application that you can use to follow along with the tutorial at 
 [Tutorial: Deploy an ASP.NET Core and Azure SQL Database app to Azure App Service](https://learn.microsoft.com/azure/app-service/tutorial-dotnetcore-sqldb-app) or by using the [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview) according to the instructions below.
 
+## 🤖 NEW: AI Chat Interface
+
+This application now includes a built-in AI chat interface that lets you manage todos using natural language! Features include:
+
+- **💬 Web-based Chat UI**: No need for separate Python scripts - chat directly in the web app
+- **🔗 Azure OpenAI Integration**: Uses Azure OpenAI with function calling to interact with your todos
+- **📱 Mobile-friendly Interface**: Responsive design works on all devices
+- **⚡ Real-time Responses**: Instant AI responses with loading indicators
+
+### How to Use the Chat Interface
+
+1. **Navigate to Chat**: Click "AI Chat" in the navigation menu
+2. **Start Chatting**: Type natural language commands like:
+   - "Show me all my todos"
+   - "Create a todo: Buy groceries tomorrow"  
+   - "Delete the first todo"
+   - "How many todos do I have?"
+
+### Configuration for AI Chat
+
+Update your `appsettings.json` with your Azure OpenAI details:
+
+```json
+{
+  "AZURE_OPENAI_ENDPOINT": "https://your-openai-resource.openai.azure.com/",
+  "AZURE_OPENAI_DEPLOYMENT_NAME": "gpt-4o-mini",
+  "LOCAL_MCP_URL": "http://localhost:5093/api/mcp"
+}
+```
+
 ## Run the sample
 
 This project has a [dev container configuration](.devcontainer/), which makes it easier to develop apps locally, deploy them to Azure, and monitor them. The easiest way to run this sample application is inside a GitHub codespace. Follow these steps:
