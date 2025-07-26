@@ -1,0 +1,14 @@
+# Azure AI Foundry Agent Service dependencies
+azure-ai-agents>=1.0.0
+azure-identity>=1.15.0
+azure-core>=1.30.0
+
+# OpenAI dependencies (used for Azure OpenAI integration)
+openai>=1.97.0
+
+# Environment and utility dependencies
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# Optional: For enhanced logging and debugging
+colorlog>=6.8.0

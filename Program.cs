@@ -24,6 +24,20 @@ else
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddMcpServer()
+    .WithHttpTransport() // With streamable HTTP
+    .WithToolsFromAssembly(); // Add all classes marked with [McpServerToolType]
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 // Add App Service logging
 builder.Logging.AddAzureWebAppDiagnostics();
 
@@ -47,5 +61,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Todos}/{action=Index}/{id?}");
+
+app.MapMcp("/api/mcp");
+app.UseCors();
 
 app.Run();
